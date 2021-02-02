@@ -8,6 +8,7 @@ Store.iml
 
 ### Intellij ###
 .idea/
+target/
 
 ###Other###
 ngf/
