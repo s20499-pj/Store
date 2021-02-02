@@ -1,0 +1,19 @@
+HELP.md
+Store.iml
+
+### Emacs ###
+*~
+\#*\#
+.\#*
+
+### Intellij ###
+.idea/
+
+###Other###
+ngf/
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
