@@ -2,15 +2,16 @@ package pl.pjatk.store.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Localization {
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String place;
-    private int palletId;
+    private Long palletId;
     private boolean isEmpty;
 
     public Localization() {
@@ -21,11 +22,11 @@ public class Localization {
         this.isEmpty = true;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -45,11 +46,11 @@ public class Localization {
         isEmpty = empty;
     }
 
-    public int getPalletId() {
+    public Long getPalletId() {
         return palletId;
     }
 
-    public void setPalletId(int palletId) {
+    public void setPalletId(Long palletId) {
         this.palletId = palletId;
     }
 }

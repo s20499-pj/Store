@@ -79,7 +79,7 @@ public class LocalizationService {
         return listEmpty;
     }
 
-    public void putPalette(int idPallet, Long idLocalization) {
+    public void putPalette(Long idPallet, Long idLocalization) {
         Localization local = localizationRepository.findById(idLocalization).get();
         if (local.isEmpty()) {
             local.setPalletId(idPallet);
@@ -90,8 +90,8 @@ public class LocalizationService {
 
     public int takePallete(Long idLocalization) {
         Localization local = localizationRepository.findById(idLocalization).get();
-        int pallete = local.getPalletId();
-        local.setPalletId(0);
+        int pallete = Math.toIntExact(local.getPalletId());
+        local.setPalletId(0L);
         local.setEmpty(true);
         return pallete;
     }

@@ -1,41 +1,30 @@
 package pl.pjatk.store.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 public class Pallet {
 
     @Id
-    @GeneratedValue
-    int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
     @ManyToMany
     private Set<Article> articles;
 
-    public Pallet(int id) {
+    public Pallet(Long id) {
         this.id = id;
     }
 
     public Pallet() {
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
-
-    /*public List<Article> getList() {
-        return list;
-    }
-
-    public void setList(List<Article> list) {
-        this.list = list;
-    }*/
 }

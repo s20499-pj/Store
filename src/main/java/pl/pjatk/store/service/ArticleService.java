@@ -19,8 +19,8 @@ public class ArticleService {
         this.articleRepository.save(new Article("kubek", 2, 20));
     }
 
-    public Optional<Article> findById(int id) {
-        return articleRepository.findById((long) id);
+    public Optional<Article> findById(long id) {
+        return articleRepository.findById(id);
     }
 
     public List<Article> findAll() {
