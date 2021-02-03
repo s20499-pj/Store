@@ -10,18 +10,13 @@ public class Localization {
     @GeneratedValue
     private int id;
     private String place;
+    private int palletId;
     private boolean isEmpty;
 
     public Localization() {
     }
 
     public Localization(String place) {
-        this.place = place;
-        this.isEmpty = true;
-    }
-
-    public Localization(int id, String place) {
-        this.id = id;
         this.place = place;
         this.isEmpty = true;
     }
@@ -48,5 +43,13 @@ public class Localization {
 
     public void setEmpty(boolean empty) {
         isEmpty = empty;
+    }
+
+    public int getPalletId() {
+        return palletId;
+    }
+
+    public void setPalletId(int palletId) {
+        this.palletId = palletId;
     }
 }

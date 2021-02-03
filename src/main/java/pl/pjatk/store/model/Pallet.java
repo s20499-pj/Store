@@ -3,8 +3,8 @@ package pl.pjatk.store.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.ManyToMany;
+import java.util.Set;
 
 @Entity
 public class Pallet {
@@ -12,15 +12,15 @@ public class Pallet {
     @Id
     @GeneratedValue
     int id;
-    //ArrayList list = new ArrayList();
+
+    @ManyToMany
+    private Set<Article> articles;
 
     public Pallet(int id) {
         this.id = id;
-        //this.list = list;
     }
 
     public Pallet() {
-
     }
 
     public int getId() {
