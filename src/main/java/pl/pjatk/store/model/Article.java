@@ -1,16 +1,44 @@
 package pl.pjatk.store.model;
 
-public class Article {
-    private String name;
-    private int id;
-    private int weight;
-    private int price;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-    public Article(String name, int number, int weight, int price) {
+@Entity
+public class Article {
+
+    @Id
+    @GeneratedValue
+    private int id;
+    private String name;
+    private float weight;
+    private int price;
+    private int volume;
+
+    public Article() {
+    }
+
+    public Article(String name, int weight, int price, int volume) {
         this.name = name;
-        this.id = number;
         this.weight = weight;
         this.price = price;
+    }
+
+    public Article(int id, String name, int weight, int price, int volume) {
+        this.name = name;
+        this.id = id;
+        this.weight = weight;
+        this.price = price;
+    }
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -21,19 +49,11 @@ public class Article {
         this.name = name;
     }
 
-    public int getNumber() {
-        return id;
-    }
-
-    public void setNumber(int number) {
-        this.id = number;
-    }
-
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 
@@ -43,5 +63,14 @@ public class Article {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
     }
 }

@@ -1,14 +1,29 @@
 package pl.pjatk.store.model;
 
-public class Localization {
-    int id;
-    int place;
-    boolean isEmpty;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-    public Localization(int id, int place, boolean isEmpty) {
+@Entity
+public class Localization {
+    @Id
+    @GeneratedValue
+    private int id;
+    private String place;
+    private boolean isEmpty;
+
+    public Localization() {
+    }
+
+    public Localization(String place) {
+        this.place = place;
+        this.isEmpty = true;
+    }
+
+    public Localization(int id, String place) {
         this.id = id;
         this.place = place;
-        this.isEmpty = isEmpty;
+        this.isEmpty = true;
     }
 
     public int getId() {
@@ -19,11 +34,11 @@ public class Localization {
         this.id = id;
     }
 
-    public int getPlace() {
+    public String getPlace() {
         return place;
     }
 
-    public void setPlace(int place) {
+    public void setPlace(String place) {
         this.place = place;
     }
 
