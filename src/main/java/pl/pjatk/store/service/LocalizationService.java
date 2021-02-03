@@ -2,7 +2,6 @@ package pl.pjatk.store.service;
 
 import org.springframework.stereotype.Service;
 import pl.pjatk.store.model.Localization;
-import pl.pjatk.store.model.Pallet;
 import pl.pjatk.store.repository.LocalizationRepository;
 
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class LocalizationService {
         return listOfEmpty;
     }
 
-    public void add(Localization localization) {
+    public boolean add(Localization localization) {
         List<Localization> list = findAll();
         boolean placeExist = false;
         for (Localization value : list) {
@@ -54,7 +53,9 @@ public class LocalizationService {
         }
         if (!placeExist) {
             localizationRepository.save(localization);
+            return true;
         }
+        else return false;
     }
 
     public void deleteById(Long id) {

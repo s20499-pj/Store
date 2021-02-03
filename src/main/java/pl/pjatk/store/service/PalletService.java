@@ -19,21 +19,19 @@ public class PalletService {
         this.palletRepository.save(new Pallet());
     }
 
-
-    public Optional<Pallet> findById(Long id) {
-        return palletRepository.findById(id);
+    public Optional<Pallet> findById(int id) {
+        return palletRepository.findById((long) id);
     }
 
     public List<Pallet> findAll() {
         return palletRepository.findAll();
     }
 
-
-    public Pallet addNew(Pallet pallet){
+    public Pallet addNew(Pallet pallet) {
         return palletRepository.save(pallet);
     }
 
-    public void deleteByID(Long id){
+    public void deleteByID(Long id) {
         palletRepository.deleteById(id);
     }
 }
