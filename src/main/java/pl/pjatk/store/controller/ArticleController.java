@@ -13,14 +13,14 @@ import java.util.Optional;
 @RequestMapping("/article")
 public class ArticleController {
 
-    private ArticleService articleService;
+    private final ArticleService articleService;
 
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
     }
 
     @GetMapping
-    public ResponseEntity<List<Article>> findAll(){
+    public ResponseEntity<List<Article>> findAll() throws ArticleException {
         return ResponseEntity.ok(articleService.findAll());
     }
 
@@ -32,12 +32,12 @@ public class ArticleController {
     }
 
     @PostMapping
-    public ResponseEntity<Article> save(@RequestBody Article article){
+    public ResponseEntity<Article> save(@RequestBody Article article) throws ArticleException {
         return ResponseEntity.ok(articleService.addNew(article));
     }
 
     @DeleteMapping("/del/{id}")
-    public ResponseEntity<Void> delete(@PathVariable int id){
+    public ResponseEntity<Void> delete(@PathVariable int id) throws ArticleException {
         articleService.deleteByID(id);
         return ResponseEntity.ok().build();
     }

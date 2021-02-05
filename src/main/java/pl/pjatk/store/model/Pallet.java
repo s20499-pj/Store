@@ -1,6 +1,7 @@
 package pl.pjatk.store.model;
 
 import javax.persistence.*;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -10,14 +11,11 @@ public class Pallet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @ManyToMany
-    private Set<Article> articles;
-
-    public Pallet(int id) {
-        this.id = id;
-    }
+    @OneToMany
+    private final Set<Article> articles;
 
     public Pallet() {
+        this.articles = null;
     }
 
     public int getId() {
@@ -26,5 +24,17 @@ public class Pallet {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Set<Article> getArticles() {
+        return articles;
+    }
+
+    public void addArticle(Article article){
+        articles.add(article);
+    }
+
+    public void removeArticle(Article article){
+        articles.remove(article);
     }
 }

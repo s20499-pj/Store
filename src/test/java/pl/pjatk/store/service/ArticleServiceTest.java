@@ -45,7 +45,7 @@ public class ArticleServiceTest {
     }
 
     @Test
-    public void shouldAddNew() {
+    public void shouldAddNew() throws ArticleException {
         //Given
         when(articleRepository.save(article)).thenReturn(article);
         //When
@@ -65,7 +65,7 @@ public class ArticleServiceTest {
     }
 
     @Test
-    public void shouldUpdateById() {
+    public void shouldUpdateById() throws ArticleException {
         //Given
         when(articleRepository.findById(1)).thenReturn(Optional.of(article));
         //When
@@ -75,7 +75,7 @@ public class ArticleServiceTest {
     }
 
     @Test
-    public void shouldFindAll() {
+    public void shouldFindAll(){
         //Given
         list.add(article);
         list.add(article1);
@@ -87,7 +87,7 @@ public class ArticleServiceTest {
     }
 
     @Test
-    public void shouldDeleteById() {
+    public void shouldDeleteById() throws ArticleException {
         //Given
         articleService.addNew(article);
         //When
@@ -98,7 +98,7 @@ public class ArticleServiceTest {
     }
 
     @Test
-    public void shouldUpdateByName() {
+    public void shouldUpdateByName() throws ArticleException {
         //Given
         list.add(article);
         list.add(article1);

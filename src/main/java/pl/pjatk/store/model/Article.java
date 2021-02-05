@@ -1,7 +1,6 @@
 package pl.pjatk.store.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Article {
@@ -13,8 +12,8 @@ public class Article {
     private float weight;
     private int price;
 
-    @ManyToMany
-    private Set<Pallet> pallets;
+    @ManyToOne
+    private Pallet pallet;
 
     public Article() {
     }
@@ -55,5 +54,13 @@ public class Article {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Pallet getPallet() {
+        return pallet;
+    }
+
+    public void setPallet(Pallet pallet) {
+        this.pallet = pallet;
     }
 }
