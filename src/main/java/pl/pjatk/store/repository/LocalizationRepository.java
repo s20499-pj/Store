@@ -5,4 +5,4 @@ import org.springframework.stereotype.Repository;
 import pl.pjatk.store.model.Localization;
 
 @Repository
-public interface LocalizationRepository extends JpaRepository<Localization, Long> { }
+public interface LocalizationRepository extends JpaRepository<Localization, Integer> { }

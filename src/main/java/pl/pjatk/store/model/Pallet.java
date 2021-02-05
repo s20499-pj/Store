@@ -8,23 +8,23 @@ public class Pallet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    int id;
 
     @ManyToMany
     private Set<Article> articles;
 
-    public Pallet(Long id) {
+    public Pallet(int id) {
         this.id = id;
     }
 
     public Pallet() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

@@ -28,7 +28,7 @@ public class LocalizationController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Localization>> findById(@PathVariable int id) {
-        Optional<Localization> byId = localizationService.findById((long) id);
+        Optional<Localization> byId = localizationService.findById(id);
         if (byId.isPresent()) return ResponseEntity.ok(byId);
         else return ResponseEntity.notFound().build();
     }
@@ -46,14 +46,14 @@ public class LocalizationController {
     }
 
     @DeleteMapping("/del/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id) {
+    public ResponseEntity<Void> delete(@PathVariable int id) {
         localizationService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{id}")
     public ResponseEntity<Optional<Localization>> rename(@PathVariable int id, @RequestBody String txt) {
-        Optional<Localization> place = localizationService.findById((long) id);
+        Optional<Localization> place = localizationService.findById(id);
         if (place.isPresent()) {
             place.get().setPlace(txt);
             return ResponseEntity.ok(place);
@@ -62,8 +62,8 @@ public class LocalizationController {
 
     @GetMapping("/{idLocalization}/{idPallet}")
     public ResponseEntity<Void> putPallete(@PathVariable int idLocalization, int idPallet) {
-        Optional<Localization> place = localizationService.findById((long) idLocalization);
-        Optional<Localization> pallete = localizationService.findById((long) idPallet);
+        Optional<Localization> place = localizationService.findById(idLocalization);
+        Optional<Localization> pallete = localizationService.findById(idPallet);
         if (place.isPresent() && pallete.isPresent()) {
             place.get().setPalletId(pallete.get().getId());
             return ResponseEntity.ok().build();
@@ -72,9 +72,9 @@ public class LocalizationController {
 
     @GetMapping("/{idLocalization}/take")
     public ResponseEntity<Optional<Pallet>> takePallete(@PathVariable int idLocalization){
-        Optional<Localization> place = localizationService.findById((long) idLocalization);
+        Optional<Localization> place = localizationService.findById(idLocalization);
         if (place.isPresent() && !place.get().isEmpty()){
-            int idPallete = localizationService.takePallete((long) idLocalization);
+            int idPallete = localizationService.takePallete(idLocalization);
             Optional<Pallet> pallete = palletService.findById((int) idPallete);
             return ResponseEntity.ok(pallete);
         }else return ResponseEntity.badRequest().build();

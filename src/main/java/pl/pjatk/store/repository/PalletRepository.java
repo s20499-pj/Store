@@ -5,4 +5,4 @@ import org.springframework.stereotype.Repository;
 import pl.pjatk.store.model.Pallet;
 
 @Repository
-public interface PalletRepository extends JpaRepository<Pallet, Long> { }
+public interface PalletRepository extends JpaRepository<Pallet, Integer> { }

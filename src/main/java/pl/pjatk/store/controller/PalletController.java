@@ -35,7 +35,7 @@ public class PalletController {
     }
 
     @DeleteMapping("/del/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id){
+    public ResponseEntity<Void> delete(@PathVariable int id){
         palletService.deleteByID(id);
         return ResponseEntity.ok().build();
     }

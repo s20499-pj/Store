@@ -23,7 +23,7 @@ public class LocalizationService {
         this.localizationRepository.save(new Localization("r3 m2"));
     }
 
-    public Optional<Localization> findById(Long id) {
+    public Optional<Localization> findById(int id) {
         return localizationRepository.findById(id);
     }
 
@@ -58,14 +58,14 @@ public class LocalizationService {
         else return false;
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(int id) {
         Optional<Localization> local = findById(id);
         if (local.isEmpty()) {
             localizationRepository.deleteById(id);
         }
     }
 
-    public void renamePlace(Long id, String txt) {
+    public void renamePlace(int id, String txt) {
         localizationRepository.findById(id).get().setPlace(txt);
     }
 
@@ -79,7 +79,7 @@ public class LocalizationService {
         return listEmpty;
     }
 
-    public void putPalette(Long idPallet, Long idLocalization) {
+    public void putPalette(int idPallet, int idLocalization) {
         Localization local = localizationRepository.findById(idLocalization).get();
         if (local.isEmpty()) {
             local.setPalletId(idPallet);
@@ -88,10 +88,10 @@ public class LocalizationService {
         }
     }
 
-    public int takePallete(Long idLocalization) {
+    public int takePallete(int idLocalization) {
         Localization local = localizationRepository.findById(idLocalization).get();
         int pallete = Math.toIntExact(local.getPalletId());
-        local.setPalletId(0L);
+        local.setPalletId(0);
         local.setEmpty(true);
         return pallete;
     }

@@ -8,7 +8,7 @@ public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String name;
     private float weight;
     private int price;
@@ -19,17 +19,17 @@ public class Article {
     public Article() {
     }
 
-    public Article(String name, int weight, int price) {
+    public Article(String name, int price, int weight) {
         this.name = name;
-        this.weight = weight;
         this.price = price;
+        this.weight = weight;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

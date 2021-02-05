@@ -9,9 +9,9 @@ import javax.persistence.Id;
 public class Localization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String place;
-    private Long palletId;
+    private int palletId;
     private boolean isEmpty;
 
     public Localization() {
@@ -22,11 +22,11 @@ public class Localization {
         this.isEmpty = true;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -46,11 +46,11 @@ public class Localization {
         isEmpty = empty;
     }
 
-    public Long getPalletId() {
+    public int getPalletId() {
         return palletId;
     }
 
-    public void setPalletId(Long palletId) {
+    public void setPalletId(int palletId) {
         this.palletId = palletId;
     }
 }

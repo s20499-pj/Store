@@ -2,6 +2,7 @@ package pl.pjatk.store.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.pjatk.store.exception.ArticleException;
 import pl.pjatk.store.model.Article;
 import pl.pjatk.store.service.ArticleService;
 
@@ -24,7 +25,7 @@ public class ArticleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Article>> findById(@PathVariable int id){
+    public ResponseEntity<Optional<Article>> findById(@PathVariable int id) throws ArticleException {
         Optional<Article> byId = articleService.findById(id);
         if (byId.isPresent()) return ResponseEntity.ok(byId);
         else return ResponseEntity.notFound().build();
@@ -36,7 +37,7 @@ public class ArticleController {
     }
 
     @DeleteMapping("/del/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id){
+    public ResponseEntity<Void> delete(@PathVariable int id){
         articleService.deleteByID(id);
         return ResponseEntity.ok().build();
     }

@@ -20,7 +20,7 @@ public class PalletService {
     }
 
     public Optional<Pallet> findById(int id) {
-        return palletRepository.findById((long) id);
+        return palletRepository.findById(id);
     }
 
     public List<Pallet> findAll() {
@@ -31,7 +31,7 @@ public class PalletService {
         return palletRepository.save(pallet);
     }
 
-    public void deleteByID(Long id) {
+    public void deleteByID(int id) {
         palletRepository.deleteById(id);
     }
 }
