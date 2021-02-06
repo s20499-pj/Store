@@ -20,7 +20,7 @@ public class ArticleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Article>> findAll() throws ArticleException {
+    public ResponseEntity<List<Article>> findAll(){
         return ResponseEntity.ok(articleService.findAll());
     }
 
@@ -41,5 +41,23 @@ public class ArticleController {
         articleService.deleteByID(id);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/{id}/pallet")
+    public ResponseEntity<Integer> getOnPallet(@PathVariable int id) throws ArticleException {
+        return ResponseEntity.ok(articleService.getOnPallet(id));
+    }
+
+    @PostMapping("/{idArticle}/pallet")
+    public ResponseEntity setOnPallet(@PathVariable int idArticle, @RequestBody int idPallet) throws ArticleException{
+        return ResponseEntity.ok(articleService.setOnPallet(idArticle, idPallet));
+    }
+
+    @DeleteMapping("/{idArticle}/pallet")
+    public ResponseEntity<Void> takeFromPallet(@PathVariable int idArticle, @RequestBody int idPallet) throws ArticleException{
+        articleService.takeFromPallet(idArticle, idPallet);
+        return ResponseEntity.ok().build();
+    }
+
+
 
 }

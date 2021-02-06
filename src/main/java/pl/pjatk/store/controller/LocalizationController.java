@@ -2,6 +2,7 @@ package pl.pjatk.store.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.pjatk.store.exception.PalletException;
 import pl.pjatk.store.model.Localization;
 import pl.pjatk.store.model.Pallet;
 import pl.pjatk.store.service.LocalizationService;
@@ -71,13 +72,13 @@ public class LocalizationController {
     }
 
     @GetMapping("/{idLocalization}/take")
-    public ResponseEntity<Optional<Pallet>> takePallete(@PathVariable int idLocalization){
+    public ResponseEntity<Optional<Pallet>> takePallete(@PathVariable int idLocalization) throws PalletException {
         Optional<Localization> place = localizationService.findById(idLocalization);
-        if (place.isPresent() && !place.get().isEmpty()){
+        if (place.isPresent() && !place.get().isEmpty()) {
             int idPallete = localizationService.takePallete(idLocalization);
             Optional<Pallet> pallete = palletService.findById((int) idPallete);
             return ResponseEntity.ok(pallete);
-        }else return ResponseEntity.badRequest().build();
+        } else return ResponseEntity.badRequest().build();
 
     }
 }

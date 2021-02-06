@@ -38,6 +38,9 @@ public class ArticleServiceTest {
 
     @BeforeEach
     public void beforeEach() {
+        article = new Article("nożyczki", 10, 1);
+        article1 = new Article("patelnia", 30, 2);
+        list = new ArrayList<>();
     }
 
     @AfterEach
@@ -89,12 +92,11 @@ public class ArticleServiceTest {
     @Test
     public void shouldDeleteById() throws ArticleException {
         //Given
-        articleService.addNew(article);
+        when(articleRepository.findById(article.getId())).thenReturn(Optional.ofNullable(article));
         //When
         articleService.deleteByID(article.getId());
-        articleService.deleteByID(article.getId());
         //Then
-        verify(articleRepository, times(2)).deleteById(article.getId());
+        verify(articleRepository, times(1)).deleteById(article.getId());
     }
 
     @Test
@@ -110,5 +112,37 @@ public class ArticleServiceTest {
         assertThat(test.stream().findFirst().get()).isEqualTo(article);
     }
 
+    @Test
+    public void shouldGetOnPallet() throws ArticleException {
+        //Given
+        Article article2 = new Article("patelnia", 30, 2);
+        article2.setOnPallet(4);
+        when(articleRepository.findById(article2.getId())).thenReturn(Optional.of(article2));
+        //When
+        int test = articleService.getOnPallet(article2.getId());
+        //Then
+        assertThat(test).isEqualTo(4);
+    }
+
+    @Test
+    public void shouldSetOnPallet() throws ArticleException {
+        //Given
+        when(articleRepository.findById(article.getId())).thenReturn(Optional.ofNullable(article));
+        //When
+        int test = articleService.setOnPallet(article.getId(), 1);
+        //Then
+        assertThat(test).isEqualTo(1);
+    }
+
+    @Test
+    public void shouldTakeFromPallet() throws ArticleException {
+        //Given
+        article.setOnPallet(1);
+        when(articleRepository.findById(article.getId())).thenReturn(Optional.ofNullable(article));
+        //When
+        articleService.takeFromPallet(article.getId(), 1);
+        //Then
+        assertThat(article.getOnPallet()).isEqualTo(0);
+    }
 
 }

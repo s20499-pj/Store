@@ -11,17 +11,16 @@ public class Article {
     private String name;
     private float weight;
     private int price;
-
-    @ManyToOne
-    private Pallet pallet;
-
-    public Article() {
-    }
+    private int onPallet;
 
     public Article(String name, int price, int weight) {
         this.name = name;
         this.price = price;
         this.weight = weight;
+        this.onPallet = 0;
+    }
+
+    public Article() {
     }
 
     public int getId() {
@@ -56,11 +55,12 @@ public class Article {
         this.price = price;
     }
 
-    public Pallet getPallet() {
-        return pallet;
+    public int getOnPallet() {
+        return onPallet;
     }
 
-    public void setPallet(Pallet pallet) {
-        this.pallet = pallet;
+    public int setOnPallet(int idPallet) {
+        this.onPallet = idPallet;
+        return idPallet;
     }
 }
